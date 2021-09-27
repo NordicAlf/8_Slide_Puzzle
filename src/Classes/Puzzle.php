@@ -41,7 +41,7 @@ class Puzzle
             }
         }
 
-        return $this->isSolved ? $this->convertStepsSolutionToString() : $this->convertStepsSolutionToString();
+        return $this->isSolved ? $this->convertStepsSolutionToString() : false;
     }
 
     /**
@@ -200,8 +200,9 @@ class Puzzle
             }
         }
 
-        if (!$this->run($puzzle)) {
-            $this->createRandomPuzzle();
+        $result = $this->run($puzzle);
+        if (!$result) {
+            return $this->createRandomPuzzle();
         }
 
         return $puzzle;
