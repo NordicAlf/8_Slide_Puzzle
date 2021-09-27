@@ -41,7 +41,7 @@ class Puzzle
             }
         }
 
-        return $this->isSolved ? $this->convertStepsSolutionToString() : false;
+        return $this->isSolved ? $this->convertStepsSolutionToString() : $this->convertStepsSolutionToString();
     }
 
     /**

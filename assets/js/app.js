@@ -37,3 +37,25 @@ function swapTiles(cell1, cell2) {
     document.getElementById(cell1).className = document.getElementById(cell2).className;
     document.getElementById(cell2).className = temp;
 }
+
+document.querySelector('#newGame').addEventListener('click', function () {
+    fetch('http://localhost:8000/src/index.php?type=get-puzzle', {
+        headers : {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(resp => console.log(resp));
+});
+
+document.querySelector('#getSolution').addEventListener('click', function () {
+    fetch('http://localhost:8000/src/index.php?type=get-solution', {
+        headers : {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(resp => console.log(resp));
+});
