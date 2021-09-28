@@ -1,3 +1,7 @@
+import {Image} from "./Image.js";
+
+let image = new Image();
+
 document.querySelector('.puzzle').addEventListener('click', function (event) {
     let element = Object.assign(event.target);
     let position = element.getAttribute('data-value').split(',');
@@ -59,3 +63,5 @@ document.querySelector('#getSolution').addEventListener('click', function () {
         .then(response => response.json())
         .then(resp => console.log(resp));
 });
+
+document.querySelector('#changeImage').addEventListener('click', image.changeImage);

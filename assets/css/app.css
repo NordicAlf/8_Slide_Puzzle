@@ -11,12 +11,12 @@ body {
     display: table-row;
 }
 
-.tile1, .tile2, .tile3, .tile4, .tile5, .tile6, .tile7, .tile8, .tile9 {
+.col {
     display: table-cell;
-    width: 120px;
-    height: 120px;
+    width: 160px;
+    height: 160px;
     border: 1px solid white;
-    background: url("https://i.imgur.com/CmFuOpx.png");
+    background-color: #ffffff;
     cursor: pointer;
 }
 
