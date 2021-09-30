@@ -5,7 +5,9 @@ export class Image
     constructor() {
         this.changeImage();
 
-        document.querySelector('#changeImage').addEventListener('click', this.changeImage.bind(this));
+        document.querySelector('#changeImage').addEventListener('click', () => {
+            this.changeImage()
+        });
     }
 
     getRandomNumber(min, max) {
