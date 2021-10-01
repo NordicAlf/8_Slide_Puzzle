@@ -13,25 +13,25 @@ export class Puzzle
         let row = +position[0], column = +position[1];
 
         if (!document.getElementById("cell"+row+column).classList.contains("tile9")) {
-            if (column < 3) {
+            if (column < 2) {
                 if (document.getElementById("cell"+row+(column+1)).classList.contains("tile9")) {
                     this.swapTiles("cell"+row+column,"cell"+row+(column+1));
                     return;
                 }
             }
-            if (column > 1) {
+            if (column > 0) {
                 if (document.getElementById("cell"+row+(column-1)).classList.contains("tile9")) {
                     this.swapTiles("cell"+row+column,"cell"+row+(column-1));
                     return;
                 }
             }
-            if (row > 1) {
+            if (row > 0) {
                 if (document.getElementById("cell"+(row-1)+column).classList.contains("tile9")) {
                     this.swapTiles("cell"+row+column,"cell"+(row-1)+column);
                     return;
                 }
             }
-            if (row < 3) {
+            if (row < 2) {
                 if (document.getElementById("cell"+(row+1)+column).classList.contains("tile9")) {
                     this.swapTiles("cell"+row+column,"cell"+(row+1)+column);
                     return;
