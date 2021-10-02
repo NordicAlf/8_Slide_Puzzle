@@ -12,8 +12,11 @@ class Controller
     public function run(): void
     {
         switch ($_REQUEST['type'] ?? '') {
-            case "get-puzzle":
-                echo $this->getPuzzle();
+            case "get-new-puzzle":
+                echo $this->getPuzzle(true);
+                break;
+            case "get-old-puzzle":
+                echo $this->getPuzzle(false);
                 break;
             case "check-solve":
                 echo $this->checkSolve();
@@ -27,10 +30,14 @@ class Controller
         }
     }
 
-    public function getPuzzle(): string
+    public function getPuzzle(bool $isNewPuzzle): string
     {
-        $puzzle = $this->puzzle->createRandomPuzzle();
-        $_SESSION['puzzle'] = $puzzle;
+        if ($isNewPuzzle) {
+            $puzzle = $this->puzzle->createRandomPuzzle();
+            $_SESSION['puzzle'] = $puzzle;
+        } else {
+            $puzzle = $_SESSION['puzzle'];
+        }
 
         return json_encode($puzzle, JSON_FORCE_OBJECT);
     }

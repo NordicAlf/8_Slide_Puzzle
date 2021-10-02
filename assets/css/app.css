@@ -20,30 +20,79 @@ body {
     cursor: pointer;
 }
 
+.col::before {
+    display: block;
+    font-size: 100px;
+    text-align: center;
+    margin: 23px 0 0;
+    color: #ffffff;
+    text-shadow: #000000 0 0 5px;
+}
+
+.numberDetailPuzzle {
+    font-size: 100px;
+    text-align: center;
+    margin: 23px 0 0;
+    color: #ffffff;
+    text-shadow: #000000 0 0 5px;
+}
+
 .tile1 {
     background-position: left top;
 }
+.tile1:before {
+    content: "1";
+}
+
 .tile2 {
     background-position: center top;
 }
+.tile2:before {
+    content: "2";
+}
+
 .tile3 {
     background-position: right top;
 }
+.tile3:before {
+    content: "3";
+}
+
 .tile4 {
     background-position: left center;
 }
+.tile4:before {
+    content: "4";
+}
+
 .tile5 {
     background-position: center center;
 }
+.tile5:before {
+    content: "5";
+}
+
 .tile6 {
     background-position: right center;
 }
+.tile6:before {
+    content: "6";
+}
+
 .tile7 {
     background-position: left bottom;
 }
+.tile7:before {
+    content: "7";
+}
+
 .tile8 {
     background-position: center bottom;
 }
+.tile8:before {
+    content: "8";
+}
+
 .tile9 {
     background: white; cursor: default;
 }
