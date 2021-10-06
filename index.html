@@ -8,6 +8,13 @@
         <link rel="stylesheet" href="assets/css/app.css">
     </head>
     <body>
+        <div id="screen"></div>
+        <div class="buttons">
+            <button id="newGame">Новая игра</button>
+            <button id="restartGame">Начать заново</button>
+            <button id="getSolution">Получить решение</button>
+            <button id="changeImage">Сменить картинку</button>
+        </div>
         <div class="puzzle">
             <div class="row">
                 <div id="cell00" class="col tile1" data-value="0,0"></div>
@@ -25,11 +32,6 @@
                 <div id="cell22" class="col tile9" data-value="2,2"></div>
             </div>
         </div>
-
-        <button id="newGame">Новая игра</button>
-        <button id="restartGame">Начать заново</button>
-        <button id="getSolution">Получить решение</button>
-        <button id="changeImage">Сменить картинку</button>
 
         <script type="module" src="assets/js/app.js"></script>
     </body>
