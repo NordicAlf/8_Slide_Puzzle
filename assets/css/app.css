@@ -1,5 +1,10 @@
+body, html {
+    height: 100vh;
+}
+
 body {
-    background: #AAAAAA;
+    background: #aaaaaa url("../images/forest.png") repeat-x bottom;
+    overflow: hidden;
 }
 
 .buttons {
