@@ -10,7 +10,7 @@ export class NewGame
     }
 
     clickNewGame() {
-        fetch('http://localhost:8000/src/index.php?type=get-new-puzzle', {
+        fetch(`${window.location.href}src/index.php?type=get-new-puzzle`, {
             headers : {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
@@ -21,7 +21,7 @@ export class NewGame
     }
 
     clickRestart() {
-        fetch('http://localhost:8000/src/index.php?type=get-old-puzzle', {
+        fetch(`${window.location.href}src/index.php?type=get-old-puzzle`, {
             headers : {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'

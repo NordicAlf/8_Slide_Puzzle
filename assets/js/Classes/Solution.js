@@ -7,7 +7,7 @@ export class Solution
     }
 
     click() {
-        fetch('http://localhost:8000/src/index.php?type=get-solution', {
+        fetch(`${window.location.href}src/index.php?type=get-solution`, {
             headers : {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'

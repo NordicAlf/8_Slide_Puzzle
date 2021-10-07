@@ -9,7 +9,7 @@ export class Difficulty
     }
 
     changeDifficulty() {
-        fetch('http://localhost:8000/src/index.php?type=change-difficulty', {
+        fetch(`${window.location.href}src/index.php?type=change-difficulty`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
@@ -20,7 +20,7 @@ export class Difficulty
     }
 
     getCurrentDifficulty() {
-        fetch('http://localhost:8000/src/index.php?type=get-current-difficulty', {
+        fetch(`${window.location.href}src/index.php?type=get-current-difficulty`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
