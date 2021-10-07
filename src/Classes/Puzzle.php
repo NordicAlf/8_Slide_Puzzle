@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace App\Classes;
 
-class Puzzle
+use App\Interfaces\PuzzleInterface;
+
+class Puzzle implements PuzzleInterface
 {
     private array $solutionSteps = [];
     private bool $isSolved = false;
@@ -178,6 +180,11 @@ class Puzzle
         return implode(', ', $this->solutionSteps);
     }
 
+    private function convertStepsSolutionToArrayFromString(string $solution): array
+    {
+        return explode(', ', $solution);
+    }
+
     private function resetProperties(): void
     {
         $this->isSolved = false;
@@ -188,6 +195,7 @@ class Puzzle
     public function createRandomPuzzle(): array
     {
         $this->resetProperties();
+        $currentDifficultySteps = (new DifficultyGame())->getCurrentSteps();
 
         $range = range(0, 8);
         shuffle($range);
@@ -201,8 +209,16 @@ class Puzzle
         }
 
         $result = $this->run($puzzle);
+
         if (!$result) {
             return $this->createRandomPuzzle();
+        }
+        if (is_string($result)) {
+            $solutionSteps = count($this->convertStepsSolutionToArrayFromString($result));
+
+            if ($solutionSteps > $currentDifficultySteps[1] || $solutionSteps < $currentDifficultySteps[0]) {
+                return $this->createRandomPuzzle();
+            }
         }
 
         return $puzzle;

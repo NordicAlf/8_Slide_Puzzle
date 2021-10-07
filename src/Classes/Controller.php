@@ -6,7 +6,8 @@ namespace App\Classes;
 class Controller
 {
     public function __construct(
-        private Puzzle $puzzle
+        private Puzzle $puzzle,
+        private DifficultyGame $difficultyGame
     ) {}
 
     public function run(): void
@@ -24,6 +25,12 @@ class Controller
             case "get-solution":
                 echo $this->getSolution();
                 break;
+            case "change-difficulty":
+                echo $this->changeDifficulty();
+                break;
+            case "get-current-difficulty":
+                echo $this->getCurrentDifficulty();
+                break;
             default:
                 echo 'not found';
                 break;
@@ -32,6 +39,8 @@ class Controller
 
     public function getPuzzle(bool $isNewPuzzle): string
     {
+        $this->difficultyGame->startDifficulty();
+
         if ($isNewPuzzle) {
             $puzzle = $this->puzzle->createRandomPuzzle();
             $_SESSION['puzzle'] = $puzzle;
@@ -54,5 +63,15 @@ class Controller
         } else {
             return 'error';
         }
+    }
+
+    private function changeDifficulty(): string
+    {
+       return json_encode($this->difficultyGame->change(), JSON_FORCE_OBJECT);
+    }
+
+    private function getCurrentDifficulty(): string
+    {
+        return json_encode($this->difficultyGame->getCurrent(), JSON_FORCE_OBJECT);
     }
 }

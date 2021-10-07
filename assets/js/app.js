@@ -3,12 +3,14 @@ import {Puzzle} from "./Classes/Puzzle.js";
 import {NewGame} from "./Classes/NewGame.js";
 import {Solution} from "./Classes/Solution.js";
 import {Snow} from "./Classes/Snow.js";
+import {Difficulty} from "./Classes/Difficulty.js";
 
 const objects = {
     puzzle: new Puzzle(),
     newGame: new NewGame(),
     solution: new Solution(),
-    image: new Image()
+    image: new Image(),
+    difficultyGame: new Difficulty()
 }
 
 window.onload = function () {

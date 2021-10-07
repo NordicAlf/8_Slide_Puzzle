@@ -14,6 +14,11 @@ export class Solution
             }
         })
             .then(response => response.json())
-            .then(resp => console.log(resp));
+            .then(resp => this.getSolution(resp));
+    }
+
+    getSolution(resp) {
+        console.log(resp.split(', ').length);
+        console.log(resp);
     }
 }
