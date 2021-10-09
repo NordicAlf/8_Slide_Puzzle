@@ -58,8 +58,10 @@ class Controller
 
     public function getSolution(): string
     {
-        if (isset($_SESSION['puzzle'])) {
-            return json_encode($this->puzzle->run($_SESSION['puzzle']), JSON_FORCE_OBJECT);
+        $bodyRequest = json_decode(file_get_contents('php://input'), true);
+
+        if (!empty($bodyRequest)) {
+            return json_encode($this->puzzle->run($bodyRequest), JSON_FORCE_OBJECT);
         } else {
             return 'error';
         }

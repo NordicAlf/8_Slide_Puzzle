@@ -16,6 +16,8 @@ class Puzzle implements PuzzleInterface
         while (!$this->isSolved) {
             $zeroData = $this->getZero($puzzle);
 
+            dump($zeroData);
+
             foreach ($zeroData['movement'] as $moveDirection) {
                 $stepInPuzzle = $puzzle; // temp puzzle
 
@@ -33,12 +35,14 @@ class Puzzle implements PuzzleInterface
 
                 $puzzle = $this->move($puzzle, $zeroData['position']['row'], $zeroData['position']['col'], array_key_first($zeroData['bestResult']), true);
 
+//                $this->deb($this->getManhattanDistance($puzzle));
                 if ($this->getManhattanDistance($puzzle) === 0) {
                     $this->isSolved = true;
                 }
             }
 
             if (empty($zeroData['distance']) || count($this->solutionSteps) > 200) {
+                $this->deb(count($this->solutionSteps));
                 break;
             }
         }
@@ -222,5 +226,12 @@ class Puzzle implements PuzzleInterface
         }
 
         return $puzzle;
+    }
+
+    public function deb(string|int $string): void
+    {
+        $STDERR = fopen("php://stderr", "w");
+        fwrite($STDERR, "\n".$string."\n\n");
+        fclose($STDERR);
     }
 }
