@@ -13,10 +13,12 @@ class Puzzle implements PuzzleInterface
 
     public function run(array $puzzle): string|bool
     {
+        if (isset($_SESSION['currentStepDirection'])) {
+            $this->lastStepDirection = $_SESSION['currentStepDirection'];
+        }
+
         while (!$this->isSolved) {
             $zeroData = $this->getZero($puzzle);
-
-            dump($zeroData);
 
             foreach ($zeroData['movement'] as $moveDirection) {
                 $stepInPuzzle = $puzzle; // temp puzzle
@@ -35,14 +37,12 @@ class Puzzle implements PuzzleInterface
 
                 $puzzle = $this->move($puzzle, $zeroData['position']['row'], $zeroData['position']['col'], array_key_first($zeroData['bestResult']), true);
 
-//                $this->deb($this->getManhattanDistance($puzzle));
                 if ($this->getManhattanDistance($puzzle) === 0) {
                     $this->isSolved = true;
                 }
             }
 
             if (empty($zeroData['distance']) || count($this->solutionSteps) > 200) {
-                $this->deb(count($this->solutionSteps));
                 break;
             }
         }
@@ -112,6 +112,10 @@ class Puzzle implements PuzzleInterface
         }
 
         if ($isSolution) {
+            if (count($this->solutionSteps) === 1) {
+                $_SESSION['currentStepDirection'] = $moveDirection;
+            }
+
             $this->lastStepDirection = $moveDirection;
         }
 
@@ -212,7 +216,7 @@ class Puzzle implements PuzzleInterface
             }
         }
 
-        $result = $this->run($puzzle);
+        $result = $this->run($puzzle ?? []);
 
         if (!$result) {
             return $this->createRandomPuzzle();
@@ -225,13 +229,25 @@ class Puzzle implements PuzzleInterface
             }
         }
 
-        return $puzzle;
+        return $puzzle ?? [];
     }
 
-    public function deb(string|int $string): void
+    public function isPuzzleSolved(array $puzzle): bool
     {
-        $STDERR = fopen("php://stderr", "w");
-        fwrite($STDERR, "\n".$string."\n\n");
-        fclose($STDERR);
+        for ($row = 0, $counter = 1; $row <= 2; $row++) {
+            for ($col = 0; $col <= 2; $col++) {
+                if ($puzzle[$row][$col] === 0 && $counter === 9) {
+                    return true;
+                } else {
+                    if ($puzzle[$row][$col] !== $counter) {
+                        return false;
+                    }
+                }
+
+                $counter++;
+            }
+        }
+
+        return true;
     }
 }

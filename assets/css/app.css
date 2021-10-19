@@ -8,7 +8,7 @@ body {
 }
 
 .buttons {
-    margin: 30px auto 100px;
+    margin: 30px auto 70px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -31,6 +31,23 @@ body {
 
 .buttons button:active {
     background-color: rgba(2, 45, 2, .9);
+}
+
+.modal {
+    margin: 30px auto 0;
+    padding: 10px 15px;
+    width: 400px;
+    height: 100px;
+    background-color: rgba(4, 47, 4, 0.4);
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
 }
 
 .puzzle{

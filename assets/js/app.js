@@ -4,14 +4,20 @@ import {NewGame} from "./Classes/NewGame.js";
 import {Solution} from "./Classes/Solution.js";
 import {Snow} from "./Classes/Snow.js";
 import {Difficulty} from "./Classes/Difficulty.js";
+import {Events} from "./Classes/Events/Events.js";
+import {Modal} from "./Classes/Modal.js";
 
-const objects = {
+const events = new Events();
+
+window.classes = {
     puzzle: new Puzzle(),
     newGame: new NewGame(),
     solution: new Solution(),
     image: new Image(),
-    difficultyGame: new Difficulty()
+    difficultyGame: new Difficulty(),
+    modal: new Modal()
 }
+window.isRunGame = false; // disable restart and get solution buttons
 
 window.onload = function () {
     let snow = new Snow({

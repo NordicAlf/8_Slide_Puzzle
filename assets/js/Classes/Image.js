@@ -3,11 +3,7 @@ export class Image
     imagePath;
 
     constructor() {
-        this.changeImage();
-
-        document.querySelector('#changeImage').addEventListener('click', () => {
-            this.changeImage()
-        });
+        this.changeImageClick();
     }
 
     getRandomNumber(min, max) {
@@ -28,14 +24,14 @@ export class Image
         document.getElementsByTagName('head')[0].appendChild(style);
     }
 
-    changeImage() {
+    changeImageClick() {
         const puzzle = document.querySelectorAll('.col');
 
         this.setImagePath(this.getRandomNumber(1, 7));
         this.createStyleForImage();
 
-        puzzle.forEach((item, index) => {
-            if (index !== 8) {
+        puzzle.forEach((item) => {
+            if (item.className.indexOf('tile9') === -1) {
                 item.classList.add('backgroundImage');
             }
         });

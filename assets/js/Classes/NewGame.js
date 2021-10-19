@@ -1,15 +1,8 @@
 export class NewGame
 {
-    constructor() {
-        document.querySelector('#newGame').addEventListener('click', () => {
-            this.clickNewGame();
-        });
-        document.querySelector('#restartGame').addEventListener('click', () => {
-            this.clickRestart();
-        });
-    }
+    newGameClick() {
+        window.isRunGame = true;
 
-    clickNewGame() {
         fetch(`${window.location.href}src/index.php?type=get-new-puzzle`, {
             headers : {
                 'Content-Type': 'application/json',
@@ -20,7 +13,7 @@ export class NewGame
             .then(puzzle => this.buildPuzzle(puzzle));
     }
 
-    clickRestart() {
+    restartClick() {
         fetch(`${window.location.href}src/index.php?type=get-old-puzzle`, {
             headers : {
                 'Content-Type': 'application/json',

@@ -1,14 +1,10 @@
 export class Difficulty
 {
     constructor() {
-        document.querySelector('#difficulty').addEventListener('click', event => {
-            this.changeDifficulty(event);
-        });
-
         this.getCurrentDifficulty();
     }
 
-    changeDifficulty() {
+    changeDifficultyClick() {
         fetch(`${window.location.href}src/index.php?type=change-difficulty`, {
             headers: {
                 'Content-Type': 'application/json',
@@ -31,7 +27,6 @@ export class Difficulty
     }
 
     setupDifficulty(difficulty) {
-        console.log(difficulty);
         document.querySelector('#difficulty').textContent = difficulty['difficulty'];
     }
 }

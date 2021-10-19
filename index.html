@@ -3,12 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <title>8-Puzzle</title>
-
         <link rel="shortcut icon" href="assets/images/puzzle.ico" type="image/x-icon">
         <link rel="stylesheet" href="assets/css/app.css">
     </head>
     <body>
         <div id="screen"></div>
+
         <div class="buttons">
             <button id="newGame">New Game</button>
             <button id="restartGame">Restart</button>
@@ -16,6 +16,7 @@
             <button id="changeImage">Change Image</button>
             <button id="difficulty">Easy</button>
         </div>
+
         <div class="puzzle">
             <div id="row1" class="row">
                 <div id="cell00" class="col tile1" data-value="0,0"></div>
@@ -33,6 +34,8 @@
                 <div id="cell22" class="col tile9" data-value="2,2"></div>
             </div>
         </div>
+
+        <div class="modal hidden"></div>
 
         <script type="module" src="assets/js/app.js"></script>
     </body>

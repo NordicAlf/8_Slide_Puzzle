@@ -19,9 +19,6 @@ class Controller
             case "get-old-puzzle":
                 echo $this->getPuzzle(false);
                 break;
-            case "check-solve":
-                echo $this->checkSolve();
-                break;
             case "get-solution":
                 echo $this->getSolution();
                 break;
@@ -30,6 +27,9 @@ class Controller
                 break;
             case "get-current-difficulty":
                 echo $this->getCurrentDifficulty();
+                break;
+            case "make-step":
+                echo $this->makeStep();
                 break;
             default:
                 echo 'not found';
@@ -41,6 +41,11 @@ class Controller
     {
         $this->difficultyGame->startDifficulty();
 
+        // remove last game
+        if (isset($_SESSION['currentStepDirection'])) {
+            unset($_SESSION['currentStepDirection']);
+        }
+
         if ($isNewPuzzle) {
             $puzzle = $this->puzzle->createRandomPuzzle();
             $_SESSION['puzzle'] = $puzzle;
@@ -51,20 +56,14 @@ class Controller
         return json_encode($puzzle, JSON_FORCE_OBJECT);
     }
 
-    public function checkSolve(): string
-    {
-        return '';
-    }
-
     public function getSolution(): string
     {
         $bodyRequest = json_decode(file_get_contents('php://input'), true);
 
-        if (!empty($bodyRequest)) {
-            return json_encode($this->puzzle->run($bodyRequest), JSON_FORCE_OBJECT);
-        } else {
-            return 'error';
-        }
+        return json_encode([
+            'solution' => $this->puzzle->run($bodyRequest),
+            'isPuzzleSolved' => $this->puzzle->isPuzzleSolved($bodyRequest) ? 'true' : 'false'
+        ], JSON_FORCE_OBJECT);
     }
 
     private function changeDifficulty(): string
@@ -75,5 +74,14 @@ class Controller
     private function getCurrentDifficulty(): string
     {
         return json_encode($this->difficultyGame->getCurrent(), JSON_FORCE_OBJECT);
+    }
+
+    private function makeStep(): string
+    {
+        $bodyRequest = json_decode(file_get_contents('php://input'), true);
+
+        $_SESSION['currentStepDirection'] = $bodyRequest['currentStepDirection'];
+
+        return json_encode($this->puzzle->isPuzzleSolved($bodyRequest['puzzle']) ? 'true' : 'false', JSON_FORCE_OBJECT);
     }
 }
