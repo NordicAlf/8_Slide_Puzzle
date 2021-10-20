@@ -11,7 +11,7 @@ class Puzzle implements PuzzleInterface
     private bool $isSolved = false;
     private string $lastStepDirection = '';
 
-    public function run(array $puzzle): string|bool
+    public function run(array $puzzle): string|false
     {
         if (isset($_SESSION['currentStepDirection'])) {
             $this->lastStepDirection = $_SESSION['currentStepDirection'];
@@ -91,6 +91,7 @@ class Puzzle implements PuzzleInterface
      * @param int $columnAt is from column your puzzle array
      * @param string $moveDirection is which way to move zero
      * @param bool $isSolution is if true, so save your step
+     * @return array new puzzle array with make step
      */
     private function move(array $puzzle, int $rowAt, int $columnAt, string $moveDirection, bool $isSolution = false): array
     {
@@ -124,9 +125,8 @@ class Puzzle implements PuzzleInterface
 
     /**
      * This function calculate is the best solution for every direction your step
-     * For example:
      * @param array $puzzle is your puzzle array
-     * return int
+     * @return int
      */
     private function getManhattanDistance(array $puzzle): int
     {
@@ -150,7 +150,7 @@ class Puzzle implements PuzzleInterface
     /**
      * Function for get zero row/col position and directions in which zero can move
      * @param array $puzzle is your puzzle array
-     * return array
+     * @return array
      */
     private function getZero(array $puzzle): array
     {
