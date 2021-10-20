@@ -8,4 +8,4 @@
 * Used check if an instance of N*N puzzle is solvable
 * Written **just for fun** :)
 
-![Image alt](https://github.com/NordicAlf/8_Slide_Puzzle/blob/master/game_screenshot.png)
+![Image alt](https://github.com/NordicAlf/8_Slide_Puzzle/blob/main/game_screenshot.png)
